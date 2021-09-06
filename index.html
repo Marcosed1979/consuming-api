@@ -1,0 +1,38 @@
+<body>
+    <main></main>
+</body>
+
+<script>
+
+    async function getContent() {
+
+        try {
+
+            // acessa a api do backend e obtem o seu conteúdo
+            const response = await fetch('http://localhost:4567/');
+            const data = await response.json();
+
+            show(data);
+
+        } catch (error) {
+
+            console.error(error);        
+
+        }
+        
+    }
+
+    getContent();
+
+    function show(users) {
+
+        let output = '';                            // cria variável que recebe os dados da api
+        for(let user of users){
+            output += `<li>${user.name}</li>`       // percorre o array contido na variável e cria uma lista
+        }
+
+        // exibe a lista html contida em output
+        document.querySelector('main').innerHTML = output;
+    }
+
+</script>
